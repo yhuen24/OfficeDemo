@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorOpen : MonoBehaviour
+public class DoorLock : MonoBehaviour
 {
     private Animator animator;
-    bool isOpen = false;
+    bool isRed = false;
     // Start is called before the first frame update
 
     private void Start()
@@ -14,22 +14,17 @@ public class DoorOpen : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player") && !isOpen)
+        if (other.CompareTag("Player") && !isRed)
         {
-            Debug.Log("open");
-            animator.SetBool("near", true);
-            isOpen = true;
+            //change color to red
         }
     }
 
     private void OnTriggerExit(Collider col)
     {
-        if(col.CompareTag("Player") && isOpen)
+        if (col.CompareTag("Player") && isRed)
         {
-            Debug.Log("close");
-            animator.SetBool("near", false);
-            isOpen = false;
+            //change back the color to default
         }
     }
-
 }
